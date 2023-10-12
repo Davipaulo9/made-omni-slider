@@ -1,141 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8">
+    <title>Slideshow</title>
+  </head>
+  <body>
+    <button class="prev">Previous</button>
+    <button class="next">Next</button>
+    <div class="slide" style="display: flex;">Slide 1</div>
+    <div class="slide">Slide 2</div>
+    <div class="slide">Slide 3</div>
+    <script>
+      const next = document.querySelector('.next');
+      const prev = document.querySelector('.prev');
+      const slides = document.querySelectorAll('.slide');
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Testimonials</title>
-  <link rel="stylesheet" href="style.css"> 
+      let index = 0;
+      display(index);
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
-  <section class="container">
-    <div class="slider">
-      <div class="slide slide-1">
-        <div class="slide-text">
-          <p class="testimonial-text">
-            “I have been able to save up enough money to go to college in another country. It's been literally life-changing. 
-            It's something I could've never done with a conventional job here in Argentina.”
-          </p>
-          <p class="author-text">Karen Aliberti
-            <span>Sales Trainer</span></p>
-        </div>
-        <div class="slide-img">
-          <img src="./images/karen.png" alt="img">
-        </div>
-      </div>
-      <div class="slide slide-2">
-        <div class="slide-text">
-          <p class="testimonial-text">
-            “While working at Omni I've reached major milestones of my life, like getting my own car and making plans to move out. 
-            Before working here just the thought of that was impossible.”
-          </p>
-          <p class="author-text">Danilo 
-            <span>Sales Trainer</span></p>
-        </div>
-        <div class="slide-img">
-          <img src="./images/danilo.png" alt="img">
-        </div>
-      </div>
-      <div class="slide slide-3">
-        <div class="slide-text">
-          <p class="testimonial-text">
-            “While working at Omni I've reached major milestones of my life, like getting my own car and making plans to move out. 
-            Before working here just the thought of that was impossible.”
-          </p>
-          <p class="author-text">Danilo 
-            <span>Scale Specialist</span></p>
-        </div>
-        <div class="slide-img">
-          <img src="./images/danilo.png" alt="img">
-        </div>
-      </div>
-      <div class="slide slide-4">
-        <div class="slide-text">
-          <p class="testimonial-text">
-            “I have been able to save up enough money to go to college in another country. It's been literally life-changing. 
-            It's something I could've never done with a conventional job here in Argentina.”
-          </p>
-          <p class="author-text">Karen Aliberti
-            <span>Sales Trainer</span></p>
-        </div>
-        <div class="slide-img">
-          <img src="./images/karen.png" alt="img">
-        </div>
-      </div>
-      <div class="slide slide-5">
-        <div class="slide-text">
-          <p class="testimonial-text">
-            “I have been able to save up enough money to go to college in another country. It's been literally life-changing. 
-            It's something I could've never done with a conventional job here in Argentina.”
-          </p>
-          <p class="author-text">Karen Aliberti
-            <span>Sales Trainer</span></p>
-        </div>
-        <div class="slide-img">
-          <img src="./images/karen.png" alt="img">
-        </div>
-      </div>
-      <div class="slide slide-6">
-        <div class="slide-text">
-          <p class="testimonial-text">
-            “I have been able to save up enough money to go to college in another country. It's been literally life-changing. 
-            It's something I could've never done with a conventional job here in Argentina.”
-          </p>
-          <p class="author-text">Karen Aliberti
-            <span>Sales Trainer</span></p>
-        </div>
-        <div class="slide-img">
-          <img src="./images/karen.png" alt="img">
-        </div>
-      </div>
-      <div class="slide slide-7">
-        <div class="slide-text">
-          <p class="testimonial-text">
-            “I have been able to save up enough money to go to college in another country. It's been literally life-changing. 
-            It's something I could've never done with a conventional job here in Argentina.”
-          </p>
-          <p class="author-text">Karen Aliberti
-            <span>Sales Trainer</span></p>
-        </div>
-        <div class="slide-img">
-          <img src="./images/karen.png" alt="img">
-        </div>
-      </div>
-      <div class="slide slide-8">
-        <div class="slide-text">
-          <p class="testimonial-text">
-            “ If you want to lay the best foundation possible I'd recommend taking this course. 
-  The depth the instructors go into is incredible. I now feel so confident about 
-  starting up as a professional developer. ”
-          </p>
-          <p class="author-text">John Tarkpor
-            <span>Junior Front-end Developer</span></p>
-        </div>
-        <div class="slide-img">
-          <img src="./images/image-john.jpg" alt="img">
-        </div>
-      </div>
-      <div class="buttons">
-        <div class="next"></div>
-        <div class="prev"></div>
-      </div>
-    </div>
-  </section>
-  
+      function display(index) {
+        slides.forEach((slide) => {
+          slide.style.display = 'none';
+        });
+        slides[index].style.display = 'flex';
+      }
 
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-  <script src="./main.js"></script>
-</body>
+      function nextSlide() {
+        index++;
+        if (index > slides.length - 1) {
+          index = 0;
+        }
+        display(index);
+      }
+
+      function prevSlide() {
+        index--;
+        if (index < 0) {
+          index = slides.length - 1;
+        }
+        display(index);
+      }
+
+      next.addEventListener('click', nextSlide);
+      prev.addEventListener('click', prevSlide);
+    </script>
+  </body>
 </html>
