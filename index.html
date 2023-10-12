@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Slideshow</title>
+  </head>
+  <body>
+    <button class="prev">Previous</button>
+    <button class="next">Next</button>
+    <div class="slide" style="display: flex;">Slide 1</div>
+    <div class="slide">Slide 2</div>
+    <div class="slide">Slide 3</div>
+    <script>
+      const next = document.querySelector('.next');
+      const prev = document.querySelector('.prev');
+      const slides = document.querySelectorAll('.slide');
+
+      let index = 0;
+      display(index);
+
+      function display(index) {
+        slides.forEach((slide) => {
+          slide.style.display = 'none';
+        });
+        slides[index].style.display = 'flex';
+      }
+
+      function nextSlide() {
+        index++;
+        if (index > slides.length - 1) {
+          index = 0;
+        }
+        display(index);
+      }
+
+      function prevSlide() {
+        index--;
+        if (index < 0) {
+          index = slides.length - 1;
+        }
+        display(index);
+      }
+
+      next.addEventListener('click', nextSlide);
+      prev.addEventListener('click', prevSlide);
+    </script>
+  </body>
+</html>
