@@ -1,12 +1,30 @@
-const express = require('express');
-const app = express();
+const next = document.querySelector('.next');
+const prev = document.querySelector('.prev');
+const slides = document.querySelectorAll('.slide');
 
-// Serve static files from the "public" directory (where your HTML file is located).
-app.use(express.static('public'));
+let index = 0;
+display(index);
+function display (index) {
+	slides.forEach((slide) => {
+		slide.style.display = 'none';
+	});
+	slides[index].style.display = 'flex';
+}
 
-// Start the server on port 3000.
-const port = 5000;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+function nextSlide () {
+	index++;
+	if (index > slides.length - 1) {
+		index = 0;
+	}
+	display(index);
+}
+function prevSlide () {
+	index--;
+	if (index < 0) {
+		index = slides.length - 1;
+	}
+	display(index);
+}
 
+next.addEventListener('click', nextSlide);
+prev.addEventListener('click', prevSlide);
